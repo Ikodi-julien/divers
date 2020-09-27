@@ -1,7 +1,4 @@
-import * as THREE from 'three';
-
-let scene, camera, renderer, cube;
-
+import * as THREE from '../node_modules/three/src/Three.js';
 /**
  * Créate à 3D cube using Three.js
  */
@@ -11,6 +8,9 @@ let scene, camera, renderer, cube;
  * the window
  */
 
+let scene, camera, renderer, cube;
+let container = document.getElementById("cube3d");
+
 function init() {
   renderer = new THREE.WebGLRenderer({
     // antialias lisse les bords...
@@ -18,7 +18,7 @@ function init() {
   });
 
   renderer.setSize(window.innerWidth, window.innerHeight);
-  document.body.appendChild(renderer.domElement);
+  container.appendChild(renderer.domElement);
 
   camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 1000);
   camera.position.set(5, 0, 0);

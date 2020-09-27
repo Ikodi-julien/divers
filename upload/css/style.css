@@ -1,0 +1,37 @@
+* {
+  padding: 5px;
+  margin: 10px;
+}
+
+.upload {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.upload__connexion {
+  align-self: baseline;
+}
+.upload__form {
+  background-color: whitesmoke;
+  border: 1px solid black;
+  border-radius: 1rem;
+}
+.upload__infos {
+  background-color: whitesmoke;
+  border: 1px solid black;
+  border-radius: 1rem;
+}
+
+.download {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.download__links {
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+}
+.download__link {
+  margin: 10px;
+}

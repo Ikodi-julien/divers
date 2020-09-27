@@ -1,0 +1,22 @@
+body {
+  margin: 0;
+  background: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+canvas {
+  display: block;
+}
+
+#cube3d {
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  background-color: aliceblue;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
