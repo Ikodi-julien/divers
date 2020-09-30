@@ -20,6 +20,7 @@
   <h1 class="download__title">Fichiers présents dans uploads/</h1>
 
   <div class="download__links">
+
     <?php
 
       $scandir = scandir("../uploads");
@@ -31,8 +32,8 @@
         }
       }
     ?>
+    
   </div>
-
 </section>
 
 <?php
@@ -41,13 +42,13 @@
     }
   } else { ?>
 
-<p>Veuillez entrer le mot de passe pour afficher les downloads :</p>
-<form action="index.php" method="post">
-    <p>
-    <input type="password" name="pass" />
-    <input type="submit" value="Valider" />
-    </p>
-</form>
+  <p>Veuillez entrer le mot de passe pour afficher les downloads :</p>
+  <form action="index.php" method="post">
+      <p>
+      <input type="password" name="pass" />
+      <input type="submit" value="Valider" />
+      </p>
+  </form>
 
   <?php } ?>
 
