@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const grid = document.querySelector('.grid')
+  const grid = document.querySelector('.doodleGrid')
   const doodler = document.createElement('div')
   const goLeft = document.getElementById('left')
   const goRight = document.getElementById('right')
@@ -20,6 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let leftTimerId = false
   let rightTimerId = false
   let score = 0
+  let width = 80
 
   function createDoodler() {
     grid.appendChild(doodler)
@@ -30,18 +31,20 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   class Platform {
-    constructor(newPlatformBottom, score) {
-      let width = 80 - 0.5 * score
+    constructor(newPlatformBottom, width) {
       this.bottom = newPlatformBottom
       this.left = Math.random() * 315
-      this.width = Math.floor(width)
+      this.width = width
       this.visual = document.createElement('div')
 
       const visual = this.visual
-      visual.classList.add('platform')
       visual.style.left = this.left + 'px'
       visual.style.bottom = this.bottom + 'px'
-      visual.style.width = this.width + '.px'
+      visual.style.height = '15px'
+      visual.style.width = this.width + 'px'
+      visual.style.position = 'absolute'
+      visual.classList.add('platform')
+
       grid.appendChild(visual)
     }
   }
@@ -50,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
     for (let i = 0; i < platformCount; i++) {
       let platformGap = 600 / platformCount
       let newPlatformBottom = 100 + i * platformGap
-      let newPlatform = new Platform(newPlatformBottom, score)
+      let newPlatform = new Platform(newPlatformBottom, width)
       platforms.push(newPlatform)
       console.log(platforms)
     }
@@ -69,7 +72,9 @@ document.addEventListener('DOMContentLoaded', () => {
           platforms.shift()
           score++
 
-          let newPlatform = new Platform(600, score)
+          width = 80 - 0.5 * score
+
+          let newPlatform = new Platform(600, width)
           platforms.push(newPlatform)
         }
       })
@@ -80,10 +85,10 @@ document.addEventListener('DOMContentLoaded', () => {
     clearInterval(downTimerId)
     isJumping = true
     upTimerId = setInterval(function () {
-      doodlerBottomSpace += 20
+      doodlerBottomSpace += 21
       doodler.style.bottom = doodlerBottomSpace + 'px'
 
-      if (doodlerBottomSpace > startPoint + 200) {
+      if (doodlerBottomSpace > startPoint + 210) {
         fall()
       }
     }, 30)
@@ -94,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
     isJumping = false
 
     downTimerId = setInterval(function () {
-      doodlerBottomSpace -= 5
+      doodlerBottomSpace -= 6
       doodler.style.bottom = doodlerBottomSpace + 'px'
 
       if (doodlerBottomSpace <= 0) {
@@ -151,14 +156,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Lier le lien vers php
     registerButton.addEventListener('click', () => {
-      // Récupérer le pseudo
+      // Récupérer le pseudo et commentaire
       const pseudo = document.getElementById('pseudo').value
+      const comment = document.getElementById('comment').value
 
-      document.location.href = '?pseudo=' + pseudo + '&score=' + score
+      document.location.href =
+        '?pseudo=' + pseudo + '&score=' + score + '&comment=' + comment
     })
 
     endGameBox.appendChild(registerButton)
-    endGameBox.style.top = '200px'
+    endGameBox.style.top = '100px'
   }
 
   function control(e) {
@@ -220,7 +227,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!isGameOver && !isGameOn) {
       isGameOn = true
       grid.removeChild(startButton)
-      createPlatforms()
+      createPlatforms(score)
       createDoodler()
       setInterval(movePlatforms, 30)
       jump()

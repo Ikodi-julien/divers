@@ -2,15 +2,15 @@
 
 class DBConnexion {
 
-  private $_db;
+  protected $db;
 
   public function __construct() {
 
     try {
       $db = new PDO(
-      'mysql:host=localhost;dbname=***;charset=utf8',
-      '***', 
-      '***',
+      'mysql:host=localhost;dbname=games;charset=utf8',
+      'games', 
+      'Planche7139',
       array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION)
       );
 
@@ -21,6 +21,6 @@ class DBConnexion {
     }
   }
 
-  public function setDB(PDO $db) {$this->_db = $db;}
-  public function connect() {return $this->_db;}
+  public function setDB(PDO $db) {$this->db = $db;}
+  public function connect() {return $this->db;}
 }

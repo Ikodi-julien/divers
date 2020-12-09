@@ -3,7 +3,7 @@
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 document.addEventListener('DOMContentLoaded', function () {
-  var grid = document.querySelector('.grid');
+  var grid = document.querySelector('.doodleGrid');
   var doodler = document.createElement('div');
   var goLeft = document.getElementById('left');
   var goRight = document.getElementById('right');
@@ -24,6 +24,7 @@ document.addEventListener('DOMContentLoaded', function () {
   var leftTimerId = false;
   var rightTimerId = false;
   var score = 0;
+  var width = 80;
 
   function createDoodler() {
     grid.appendChild(doodler);
@@ -33,19 +34,20 @@ document.addEventListener('DOMContentLoaded', function () {
     doodler.style.bottom = doodlerBottomSpace + 'px';
   }
 
-  var Platform = function Platform(newPlatformBottom, score) {
+  var Platform = function Platform(newPlatformBottom, width) {
     _classCallCheck(this, Platform);
 
-    var width = 80 - 0.5 * score;
     this.bottom = newPlatformBottom;
     this.left = Math.random() * 315;
-    this.width = Math.floor(width);
+    this.width = width;
     this.visual = document.createElement('div');
     var visual = this.visual;
-    visual.classList.add('platform');
     visual.style.left = this.left + 'px';
     visual.style.bottom = this.bottom + 'px';
-    visual.style.width = this.width + '.px';
+    visual.style.height = '15px';
+    visual.style.width = this.width + 'px';
+    visual.style.position = 'absolute';
+    visual.classList.add('platform');
     grid.appendChild(visual);
   };
 
@@ -53,7 +55,7 @@ document.addEventListener('DOMContentLoaded', function () {
     for (var i = 0; i < platformCount; i++) {
       var platformGap = 600 / platformCount;
       var newPlatformBottom = 100 + i * platformGap;
-      var newPlatform = new Platform(newPlatformBottom, score);
+      var newPlatform = new Platform(newPlatformBottom, width);
       platforms.push(newPlatform);
       console.log(platforms);
     }
@@ -71,7 +73,8 @@ document.addEventListener('DOMContentLoaded', function () {
           firstPlatform.classList.remove('platform');
           platforms.shift();
           score++;
-          var newPlatform = new Platform(600, score);
+          width = 80 - 0.5 * score;
+          var newPlatform = new Platform(600, width);
           platforms.push(newPlatform);
         }
       });
@@ -82,10 +85,10 @@ document.addEventListener('DOMContentLoaded', function () {
     clearInterval(downTimerId);
     isJumping = true;
     upTimerId = setInterval(function () {
-      doodlerBottomSpace += 20;
+      doodlerBottomSpace += 21;
       doodler.style.bottom = doodlerBottomSpace + 'px';
 
-      if (doodlerBottomSpace > startPoint + 200) {
+      if (doodlerBottomSpace > startPoint + 210) {
         fall();
       }
     }, 30);
@@ -95,7 +98,7 @@ document.addEventListener('DOMContentLoaded', function () {
     clearInterval(upTimerId);
     isJumping = false;
     downTimerId = setInterval(function () {
-      doodlerBottomSpace -= 5;
+      doodlerBottomSpace -= 6;
       doodler.style.bottom = doodlerBottomSpace + 'px';
 
       if (doodlerBottomSpace <= 0) {
@@ -143,12 +146,13 @@ document.addEventListener('DOMContentLoaded', function () {
     registerButton.innerHTML = 'Enregistrer ma perf'; // Lier le lien vers php
 
     registerButton.addEventListener('click', function () {
-      // Récupérer le pseudo
+      // Récupérer le pseudo et commentaire
       var pseudo = document.getElementById('pseudo').value;
-      document.location.href = '?pseudo=' + pseudo + '&score=' + score;
+      var comment = document.getElementById('comment').value;
+      document.location.href = '?pseudo=' + pseudo + '&score=' + score + '&comment=' + comment;
     });
     endGameBox.appendChild(registerButton);
-    endGameBox.style.top = '200px';
+    endGameBox.style.top = '100px';
   }
 
   function control(e) {
@@ -214,7 +218,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (!isGameOver && !isGameOn) {
       isGameOn = true;
       grid.removeChild(startButton);
-      createPlatforms();
+      createPlatforms(score);
       createDoodler();
       setInterval(movePlatforms, 30);
       jump();
