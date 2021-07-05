@@ -1,0 +1,256 @@
+:root {
+  --z-menu: 10;
+  --z-frame: 3;
+  --z-inner-frame: 1;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+/* --- HEADER --- */
+header {
+  position: fixed;
+  background-color: rgba(255, 255, 255, 0.8);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 80%;
+  height: 5vh;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  z-index: var(--z-menu);
+}
+
+header ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+header ul li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  list-style: none;
+  padding: 0 5px;
+  margin: 5px 5px;
+}
+
+header ul .sep {
+  width: 1px;
+  height: 3vh;
+  border-left: 1px solid black;
+}
+
+/* --- HERO --- */
+.container {
+  width: 100%;
+  height: 3000px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: url(../img/old-wallpaper-vector.jpg) repeat;
+}
+
+.hero {
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  top: 5vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.hero__img {
+  background: url(../img/logo_ikodi_512px.png) center no-repeat;
+  background-size: contain;
+  width: 50%;
+  height: 40vh;
+}
+
+/* --- CONTENT --- */
+.scroll {
+  position: absolute;
+  top: 100vh;
+  width: 100%;
+  height: 300vh;
+}
+
+.scroll__appli {
+  position: relative;
+  width: 100%;
+  min-height: 1000px;
+  border: 1px solid black;
+}
+
+.scroll__appli__container1 {
+  position: absolute;
+  width: 350px;
+  height: 440px;
+  -webkit-transform: rotateX(0deg);
+          transform: rotateX(0deg);
+  -webkit-transform-origin: top;
+          transform-origin: top;
+  animation: frameMouvementAfterScroll 1500ms ease-in-out alternate-reverse infinite;
+  top: 100px;
+  left: 5%;
+}
+
+.scroll__appli__container2 {
+  position: absolute;
+  width: 350px;
+  height: 440px;
+  -webkit-transform: rotateX(0deg);
+          transform: rotateX(0deg);
+  -webkit-transform-origin: top;
+          transform-origin: top;
+  animation: frameMouvementAfterScroll 1500ms ease-in-out alternate-reverse infinite;
+  top: 650px;
+  right: 10%;
+}
+
+.scroll__appli__multiplicorne {
+  position: absolute;
+  top: 47px;
+  left: 47px;
+  width: 250px;
+  height: 350px;
+  background: url(../img/capture-multiplicoren-connexion.png);
+  background-size: contain;
+  z-index: var(--z-inner-frame);
+}
+
+.scroll__appli__chronoFit {
+  position: absolute;
+  top: 47px;
+  left: 47px;
+  width: 250px;
+  height: 350px;
+  background: url(../img/chronoFit.png);
+  background-size: contain;
+  z-index: var(--z-inner-frame);
+}
+
+.scroll__appli__frame1, .scroll__appli__frame2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 350px;
+  height: 440px;
+  background: url(../img/cadre_1.png) center no-repeat;
+  background-size: contain;
+  z-index: var(--z-frame);
+}
+
+/* --- FOOTER --- */
+footer {
+  -ms-flex-item-align: right;
+      align-self: right;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  border: 1px solid black;
+}
+
+/* --- ANIMATIONS CSS --- */
+@-webkit-keyframes frameMouvementOnScroll {
+  0% {
+    -webkit-transform: perspective(1000px) rotateX(20deg);
+            transform: perspective(1000px) rotateX(20deg);
+  }
+  15% {
+    -webkit-transform: perspective(1000px) rotateX(75deg);
+            transform: perspective(1000px) rotateX(75deg);
+  }
+  45% {
+    -webkit-transform: perspective(1000px) rotateX(-30deg);
+            transform: perspective(1000px) rotateX(-30deg);
+  }
+  75% {
+    -webkit-transform: perspective(1000px) rotateX(25deg);
+            transform: perspective(1000px) rotateX(25deg);
+  }
+  90% {
+    -webkit-transform: perspective(1000px) rotateX(-10deg);
+            transform: perspective(1000px) rotateX(-10deg);
+  }
+  100% {
+    -webkit-transform: perspective(1000px) rotateX(0deg);
+            transform: perspective(1000px) rotateX(0deg);
+  }
+}
+@keyframes frameMouvementOnScroll {
+  0% {
+    -webkit-transform: perspective(1000px) rotateX(20deg);
+            transform: perspective(1000px) rotateX(20deg);
+  }
+  15% {
+    -webkit-transform: perspective(1000px) rotateX(75deg);
+            transform: perspective(1000px) rotateX(75deg);
+  }
+  45% {
+    -webkit-transform: perspective(1000px) rotateX(-30deg);
+            transform: perspective(1000px) rotateX(-30deg);
+  }
+  75% {
+    -webkit-transform: perspective(1000px) rotateX(25deg);
+            transform: perspective(1000px) rotateX(25deg);
+  }
+  90% {
+    -webkit-transform: perspective(1000px) rotateX(-10deg);
+            transform: perspective(1000px) rotateX(-10deg);
+  }
+  100% {
+    -webkit-transform: perspective(1000px) rotateX(0deg);
+            transform: perspective(1000px) rotateX(0deg);
+  }
+}
+
+@-webkit-keyframes frameMouvementAfterScroll {
+  0% {
+    -webkit-transform: perspective(2000px) rotateX(2deg);
+            transform: perspective(2000px) rotateX(2deg);
+  }
+  100% {
+    -webkit-transform: perspective(2000px) rotateX(-2deg);
+            transform: perspective(2000px) rotateX(-2deg);
+  }
+}
+
+@keyframes frameMouvementAfterScroll {
+  0% {
+    -webkit-transform: perspective(2000px) rotateX(2deg);
+            transform: perspective(2000px) rotateX(2deg);
+  }
+  100% {
+    -webkit-transform: perspective(2000px) rotateX(-2deg);
+            transform: perspective(2000px) rotateX(-2deg);
+  }
+}
+/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,65 @@
+* {
+  padding: 5px;
+  margin: 10px;
+}
+
+.upload {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.upload__connexion {
+  -ms-flex-item-align: baseline;
+      align-self: baseline;
+}
+
+.upload__form {
+  background-color: whitesmoke;
+  border: 1px solid black;
+  border-radius: 1rem;
+}
+
+.upload__infos {
+  background-color: whitesmoke;
+  border: 1px solid black;
+  border-radius: 1rem;
+}
+
+.download {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.download__links {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
+}
+
+.download__link {
+  margin: 10px;
+}
+/*# sourceMappingURL=style.css.map */
